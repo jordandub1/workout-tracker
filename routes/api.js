@@ -45,7 +45,6 @@ router.post("/api/workouts", (req, res) => {
       res.json(data);
     }
   });
-  console.log(work1);
 });
 
 router.put("/api/workouts/:id", (req, res) => {
