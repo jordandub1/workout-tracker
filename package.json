@@ -2,7 +2,8 @@
   "name": "mongoose_skeleton",
   "version": "1.0.0",
   "engines": {
-    "node": "14.17.6"
+    "node": "14.17.6",
+    "npm": "8.1.2"
   },
   "description": "NoSQL",
   "main": "server.js",
