@@ -1,9 +1,9 @@
-const router = require("express").Router();
-const Workout = require("../models/workout");
+const express = require("express");
+const router = express.Router();
+const db = require("../models");
 
-//getLastWorkout function in api.js
-router.get("/workouts", ({ body }, res) => {
-  Workout.find({})
+router.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
     .sort({ _id: -1 })
     .limit(1)
     .then((dbWorkout) => {
@@ -22,9 +22,8 @@ router.get("/workouts", ({ body }, res) => {
     });
 });
 
-//addExercise function in api.js
-router.put("/workouts/:id", ({ body, params }, res) => {
-  Workout.findOneAndUpdate(
+router.put("/api/workouts/:id", ({ body, params }, res) => {
+  db.Workout.findOneAndUpdate(
     { _id: params.id },
     {
       $push: { exercises: body },
@@ -41,10 +40,9 @@ router.put("/workouts/:id", ({ body, params }, res) => {
     });
 });
 
-//createWorkout function in api.js
-router.post("/workouts", ({ body }, res) => {
+router.post("/api/workouts", ({ body }, res) => {
   console.log("hello");
-  Workout.create({})
+  db.Workout.create({})
     .then((dbWorkouts) => {
       res.json(dbWorkouts);
     })
@@ -53,9 +51,8 @@ router.post("/workouts", ({ body }, res) => {
     });
 });
 
-//getWorkoutsInRange function on api.js
-router.get("/workouts/range", (req, res) => {
-  Workout.find({})
+router.get("/api/workouts/range", (req, res) => {
+  db.Workout.find({})
     .limit(7)
     .then((dbWorkouts) => {
       console.log(dbWorkouts);
