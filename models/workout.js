@@ -1,6 +1,9 @@
+// workout model
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// creating the workout schema for mongo
 const WorkoutSchema = new Schema(
   {
     day: {
@@ -45,6 +48,8 @@ const WorkoutSchema = new Schema(
     },
   }
 );
+
+// duration function
 WorkoutSchema.virtual("totalDuration").get(function () {
   const duration = this.exercises.reduce((acc, curr) => {
     return acc + curr.duration;
