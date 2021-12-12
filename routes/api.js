@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 
+// get last workout
 router.get("/api/workouts", (req, res) => {
   db.Workout.find({})
     .sort({ _id: -1 })
@@ -22,6 +23,7 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
+// add exercise
 router.put("/api/workouts/:id", ({ body, params }, res) => {
   db.Workout.findOneAndUpdate(
     { _id: params.id },
@@ -40,6 +42,7 @@ router.put("/api/workouts/:id", ({ body, params }, res) => {
     });
 });
 
+// create workout
 router.post("/api/workouts", ({ body }, res) => {
   console.log("hello");
   db.Workout.create({})
@@ -51,6 +54,7 @@ router.post("/api/workouts", ({ body }, res) => {
     });
 });
 
+// get workouts in range
 router.get("/api/workouts/range", (req, res) => {
   db.Workout.find({})
     .limit(7)

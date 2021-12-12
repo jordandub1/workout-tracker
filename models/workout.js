@@ -45,15 +45,15 @@ const WorkoutSchema = new Schema(
     },
   }
 );
-WorkoutSchema.virtual("totalDuration").get(function () {
-  const duration = this.exercises.reduce((acc, curr) => {
-    return acc + curr.duration;
-  }, 0);
+// WorkoutSchema.virtual("totalDuration").get(function () {
+//   const duration = this.exercises.reduce((acc, curr) => {
+//     return acc + curr.duration;
+//   }, 0);
 
-  console.log(duration);
+//   console.log(duration);
 
-  return duration;
-});
+//   return duration;
+// });
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
 
