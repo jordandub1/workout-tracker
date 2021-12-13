@@ -55,15 +55,24 @@ router.post("/api/workouts", ({ body }, res) => {
 
 // get workouts in range
 router.get("/api/workouts/range", (req, res) => {
-  db.Workout.find({})
-    .limit(7)
-    .then((dbWorkouts) => {
-      console.log(dbWorkouts);
-      res.json(dbWorkouts);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+  db.Workout.aggregate(
+    [
+      {
+        $addFields: {
+          totalDuration: { $sum: "$exercises.duration" },
+        },
+      },
+      { $sort: { day: -1 } },
+      { $limit: 7 },
+    ],
+    function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(data);
+      }
+    }
+  );
 });
 
 module.exports = router;
