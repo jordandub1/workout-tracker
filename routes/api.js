@@ -32,25 +32,23 @@ router.put("/api/workouts/:id", ({ body, params }, res) => {
       $inc: { totalDuration: body.duration },
     },
     { new: true }
-  )
-    .then((dbWorkout) => {
-      console.log(dbWorkout);
-      res.json(dbWorkout);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+  ).then((dbWorkout) => {
+    console.log(dbWorkout);
+    res.json(dbWorkout);
+  });
+  console.log("add exercise complete").catch((err) => {
+    res.json(err);
+  });
 });
 
 // create workout
 router.post("/api/workouts", ({ body }, res) => {
-  db.Workout.create({})
-    .then((dbWorkouts) => {
-      res.json(dbWorkouts);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+  db.Workout.create({}).then((dbWorkouts) => {
+    res.json(dbWorkouts);
+  });
+  console.log("create workout complete").catch((err) => {
+    res.json(err);
+  });
 });
 
 // get workouts in range
